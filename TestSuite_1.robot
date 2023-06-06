@@ -1,10 +1,9 @@
 *** Settings ***
 Documentation    Testing a banking software for two roles : Manager + Costumer
 Library    SeleniumLibrary
+Variables    D:/RobotFramework/PROJECTS/BANKING/External.py
 *** Variables ***
 ${login_page}    https://www.demo.guru99.com/v4/
-${user_id}      mngr507394
-${password}     rUjyhUg
 ${home_page}    Guru99 Bank Manager HomePage
 ${login_page_resetbtn}  name=btnReset
 
