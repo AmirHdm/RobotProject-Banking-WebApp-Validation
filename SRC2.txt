@@ -1,0 +1,16 @@
+Hey there,
+
+
+There is a major flaw in the test case we created. There is no verification step.The script is no-good if it cannot produce Pass & Fail Status. Go ahead and modify the script
+Image
+
+
+There is another major flaw. The script is a rookie script & in not production ready.
+
+Here is how you can make the script production ready
+
+    The code to setup and launch WebDriver (Firefox) should be improved to include Location   Firefox.exe    and a Firefox Profile must be created.
+    The amount of time the driver should wait when searching for a GUI element should be specified
+    The code to setup and launch Firefox should be created as a separate method.
+    All script initialization parameters like Location of Firefox , Base URL, User Name , Password etc should be stored in separate file say Util.java.  This helps in easy maintenance of script
+
