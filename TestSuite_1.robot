@@ -4,30 +4,24 @@ Library    SeleniumLibrary
 Variables    D:/RobotFramework/PROJECTS/BANKING/Packages/Cred.py
 Resource    ../BANKING/Resources/Login.resource
 *** Variables ***
-${login_page}    https://www.demo.guru99.com/v4/
-${home_page}    Guru99 Bank Manager HomePage
-${login_page_resetbtn}  name=btnReset
-
 
 *** Test Cases ***
-Test LOGIN
-    ${arg_url}=  set variable    ${login_page}
-    ${arg_verification_login_page}=  set variable    ${login_page_resetbtn}
-    OPEN SPECIFIC WEB PAGE      ${arg_url}      ${arg_verification_login_page}
+Test GET LOGIN
+    OPEN SPECIFIC WEB PAGE      ${login_page_url}    ${browser_firefox}      ${login_page_resetbtn}    ${login_page_title}
 TEST ACCESS
     seleniumlibrary.input text    name=uid      ${user_id}
     seleniumlibrary.input text    name=password      ${password}
     seleniumlibrary.click button  name=btnLogin
     BUILTIN.SLEEP    2
-    wait until location is      https://www.demo.guru99.com/v4/manager/Managerhomepage.php
-    TITLE SHOULD BE    Guru99 Bank Manager HomePage
+    wait until location is      ${home_page_url}
+    TITLE SHOULD BE    ${home_page_title}   WRONG TITLE = WRONG PAGE
     CLOSE BROWSER
 
 *** Keywords ***
 OPEN SPECIFIC WEB PAGE
-    [Arguments]     ${arg_url}      ${arg_verification_login_page}
-    open browser    ${arg_url}   alias=firefox
-    title should be     Guru99 Bank Home Page        Wrong Web Page
+    [Arguments]     ${arg_login_url}    ${arg_browser}      ${arg_verification_login_page}      ${arg_login_page_title}
+    open browser    ${arg_login_url}    browser=${arg_browser}[var1]    alias=${arg_browser}[var2]      executable_path=${arg_browser}[var3]
+    title should be     ${arg_login_page_title}       WRONG TITLE = WRONG PAGE
     element should be visible   ${arg_verification_login_page}      Element is visible
 
 
