@@ -1,87 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230608 00:32:17.772" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230608 21:00:56.080" rpa="false" schemaversion="3">
 <suite id="s1" name="TestSuite 1" source="D:\RobotFramework\PROJECTS\BANKING\TestSuite_1.robot">
 <test id="s1-t1" name="Test GET LOGIN" line="9">
 <kw name="OPEN SPECIFIC WEB PAGE">
 <arg>${login_page_url}</arg>
 <arg>${browser_firefox}</arg>
-<arg>${login_page_resetbtn}</arg>
-<arg>${login_page_title}</arg>
 <kw name="Open Browser" library="SeleniumLibrary">
-<arg>${arg_login_url}</arg>
-<arg>browser=${arg_browser}[var1]</arg>
-<arg>alias=${arg_browser}[var2]</arg>
-<arg>executable_path=${arg_browser}[var3]</arg>
+<arg>${login_url}</arg>
+<arg>browser=${browser}[var1]</arg>
+<arg>alias=${browser}[var2]</arg>
+<arg>executable_path=${browser}[var3]</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20230608 00:32:17.981" level="INFO">Opening browser 'Firefox' to base url 'https://www.demo.guru99.com/v4/'.</msg>
-<msg timestamp="20230608 00:32:17.986" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
-<status status="PASS" starttime="20230608 00:32:17.980" endtime="20230608 00:32:25.720"/>
+<msg timestamp="20230608 21:00:56.494" level="INFO">Opening browser 'Firefox' to base url 'https://www.demo.guru99.com/v4/'.</msg>
+<msg timestamp="20230608 21:00:56.499" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
+<status status="PASS" starttime="20230608 21:00:56.493" endtime="20230608 21:01:06.289"/>
 </kw>
+<status status="PASS" starttime="20230608 21:00:56.492" endtime="20230608 21:01:06.289"/>
+</kw>
+<kw name="VERIFY WEB PAGE">
+<arg>${login_page_title}</arg>
+<arg>${login_page_url}</arg>
+<arg>${login_page_resetbtn}</arg>
 <kw name="Title Should Be" library="SeleniumLibrary">
-<arg>${arg_login_page_title}</arg>
+<arg>${page_title}</arg>
 <arg>WRONG TITLE = WRONG PAGE</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20230608 00:32:25.723" level="INFO">Page title is 'Guru99 Bank Home Page'.</msg>
-<status status="PASS" starttime="20230608 00:32:25.720" endtime="20230608 00:32:25.723"/>
+<msg timestamp="20230608 21:01:06.303" level="INFO">Page title is 'Guru99 Bank Home Page'.</msg>
+<status status="PASS" starttime="20230608 21:01:06.295" endtime="20230608 21:01:06.303"/>
+</kw>
+<kw name="Location Should Be" library="SeleniumLibrary">
+<arg>${page_url}</arg>
+<arg>WRONG URL = WRONG PAGE</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<msg timestamp="20230608 21:01:06.312" level="INFO">Current location is 'https://www.demo.guru99.com/v4/'.</msg>
+<status status="PASS" starttime="20230608 21:01:06.304" endtime="20230608 21:01:06.312"/>
 </kw>
 <kw name="Element Should Be Visible" library="SeleniumLibrary">
-<arg>${arg_verification_login_page}</arg>
+<arg>${verification_element}</arg>
 <arg>Element is visible</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<msg timestamp="20230608 00:32:25.748" level="INFO">Element 'name=btnReset' is displayed.</msg>
-<status status="PASS" starttime="20230608 00:32:25.723" endtime="20230608 00:32:25.748"/>
+<msg timestamp="20230608 21:01:06.379" level="INFO">Element 'name=btnReset' is displayed.</msg>
+<status status="PASS" starttime="20230608 21:01:06.312" endtime="20230608 21:01:06.379"/>
 </kw>
-<status status="PASS" starttime="20230608 00:32:17.979" endtime="20230608 00:32:25.748"/>
+<status status="PASS" starttime="20230608 21:01:06.290" endtime="20230608 21:01:06.380"/>
 </kw>
-<status status="PASS" starttime="20230608 00:32:17.979" endtime="20230608 00:32:25.749"/>
+<timeout value="15 seconds"/>
+<status status="PASS" starttime="20230608 21:00:56.492" endtime="20230608 21:01:06.381"/>
 </test>
-<test id="s1-t2" name="TEST ACCESS" line="11">
+<test id="s1-t2" name="TEST ACCESS" line="13">
+<kw name="LOGIN WEB PAGE">
+<arg>${user_id}</arg>
+<arg>${user_password}</arg>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>name=uid</arg>
-<arg>${user_id}</arg>
+<arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230608 00:32:25.750" level="INFO">Typing text 'mngr507394' into text field 'name=uid'.</msg>
-<status status="PASS" starttime="20230608 00:32:25.750" endtime="20230608 00:32:25.789"/>
+<msg timestamp="20230608 21:01:06.388" level="INFO">Typing text 'mngr507394' into text field 'name=uid'.</msg>
+<status status="PASS" starttime="20230608 21:01:06.386" endtime="20230608 21:01:06.441"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>name=password</arg>
-<arg>${password}</arg>
+<arg>${userpwd}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230608 00:32:25.790" level="INFO">Typing text 'rUjyhUg' into text field 'name=password'.</msg>
-<status status="PASS" starttime="20230608 00:32:25.790" endtime="20230608 00:32:25.809"/>
+<msg timestamp="20230608 21:01:06.444" level="INFO">Typing text 'rUjyhUg' into text field 'name=password'.</msg>
+<status status="PASS" starttime="20230608 21:01:06.441" endtime="20230608 21:01:06.473"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>name=btnLogin</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20230608 00:32:25.809" level="INFO">Clicking button 'name=btnLogin'.</msg>
-<status status="PASS" starttime="20230608 00:32:25.809" endtime="20230608 00:32:26.576"/>
+<msg timestamp="20230608 21:01:06.474" level="INFO">Clicking button 'name=btnLogin'.</msg>
+<status status="PASS" starttime="20230608 21:01:06.473" endtime="20230608 21:01:07.478"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>2</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20230608 00:32:28.578" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20230608 00:32:26.576" endtime="20230608 00:32:28.578"/>
+<msg timestamp="20230608 21:01:09.483" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230608 21:01:07.478" endtime="20230608 21:01:09.483"/>
 </kw>
-<kw name="Wait Until Location Is" library="SeleniumLibrary">
-<arg>${home_page_url}</arg>
-<doc>Waits until the current URL is ``expected``.</doc>
-<status status="PASS" starttime="20230608 00:32:28.579" endtime="20230608 00:32:28.584"/>
+<status status="PASS" starttime="20230608 21:01:06.384" endtime="20230608 21:01:09.483"/>
 </kw>
-<kw name="Title Should Be" library="SeleniumLibrary">
+<kw name="VERIFY WEB PAGE">
 <arg>${home_page_title}</arg>
+<arg>${home_page_url}</arg>
+<arg>${home_page_managerbtn}</arg>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${page_title}</arg>
 <arg>WRONG TITLE = WRONG PAGE</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20230608 00:32:28.588" level="INFO">Page title is 'Guru99 Bank Manager HomePage'.</msg>
-<status status="PASS" starttime="20230608 00:32:28.585" endtime="20230608 00:32:28.588"/>
+<msg timestamp="20230608 21:01:09.491" level="INFO">Page title is 'Guru99 Bank Manager HomePage'.</msg>
+<status status="PASS" starttime="20230608 21:01:09.486" endtime="20230608 21:01:09.492"/>
+</kw>
+<kw name="Location Should Be" library="SeleniumLibrary">
+<arg>${page_url}</arg>
+<arg>WRONG URL = WRONG PAGE</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<msg timestamp="20230608 21:01:09.498" level="INFO">Current location is 'https://www.demo.guru99.com/v4/manager/Managerhomepage.php'.</msg>
+<status status="PASS" starttime="20230608 21:01:09.493" endtime="20230608 21:01:09.499"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${verification_element}</arg>
+<arg>Element is visible</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20230608 21:01:09.539" level="INFO">Element 'xpath://a[contains(.,'Manager')]' is displayed.</msg>
+<status status="PASS" starttime="20230608 21:01:09.499" endtime="20230608 21:01:09.539"/>
+</kw>
+<status status="PASS" starttime="20230608 21:01:09.484" endtime="20230608 21:01:09.540"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20230608 00:32:28.589" endtime="20230608 00:32:31.242"/>
+<status status="PASS" starttime="20230608 21:01:09.542" endtime="20230608 21:01:12.626"/>
 </kw>
-<status status="PASS" starttime="20230608 00:32:25.750" endtime="20230608 00:32:31.242"/>
+<timeout value="8 seconds"/>
+<status status="PASS" starttime="20230608 21:01:06.383" endtime="20230608 21:01:12.628"/>
 </test>
 <doc>Testing a banking software for two roles : Manager + Costumer</doc>
-<status status="PASS" starttime="20230608 00:32:17.773" endtime="20230608 00:32:31.244"/>
+<status status="PASS" starttime="20230608 21:00:56.128" endtime="20230608 21:01:12.631"/>
 </suite>
 <statistics>
 <total>

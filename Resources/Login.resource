@@ -1,7 +1,7 @@
 *** Variables ***
 #USER LOGIN
 ${user_id}      mngr507394
-${password}     rUjyhUg
+${user_password}     rUjyhUg
 
 #Browsers
 &{browser_chrome}    var1=Chrome       var2=chrome     var3=C:\Python311\Scripts\chromedriver.exe
@@ -14,4 +14,4 @@ ${login_page_resetbtn}  name=btnReset
 #HOME PAGE
 ${home_page_url}        https://www.demo.guru99.com/v4/manager/Managerhomepage.php
 ${home_page_title}    Guru99 Bank Manager HomePage
- # alias=${value2}     executable_path=${value3}
+${home_page_managerbtn}     xpath://a[contains(.,'Manager')]
