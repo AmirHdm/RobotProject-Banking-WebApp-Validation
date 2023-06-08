@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230608 21:44:47.343" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230608 23:02:41.918" rpa="false" schemaversion="3">
 <suite id="s1" name="TestSuite 1" source="D:\RobotFramework\PROJECTS\BANKING\TestSuite_1.robot">
-<test id="s1-t1" name="Test GET LOGIN" line="9">
+<test id="s1-t1" name="TEST READ EXCEL DATA" line="14">
+<kw name="Set Variable" library="BuiltIn">
+<var>${excel_file}</var>
+<arg>D:/RobotFramework/PROJECTS/BANKING/Packages/TestData.xlsx</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:02:42.295" level="INFO">${excel_file} = D:/RobotFramework/PROJECTS/BANKING/Packages/TestData.xlsx</msg>
+<status status="PASS" starttime="20230608 23:02:42.295" endtime="20230608 23:02:42.295"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${worksheet_name}</var>
+<arg>Sheet1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:02:42.295" level="INFO">${worksheet_name} = Sheet1</msg>
+<status status="PASS" starttime="20230608 23:02:42.295" endtime="20230608 23:02:42.295"/>
+</kw>
+<kw name="Read Excel Rows" library="ExcelLibrary">
+<var>${rows}</var>
+<arg>${excel_file}</arg>
+<arg>${worksheet_name}</arg>
+<msg timestamp="20230608 23:02:42.298" level="INFO">${rows} = [('INVALIDE', 'INVALIDE'), ('VALIDE', 'VALIDE'), ('mngr507394', 'rUjyhUg')]</msg>
+<status status="PASS" starttime="20230608 23:02:42.295" endtime="20230608 23:02:42.298"/>
+</kw>
+<for flavor="IN">
+<var>${row}</var>
+<value>@{rows}</value>
+<iter>
+<var name="${row}">('INVALIDE', 'INVALIDE')</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${username}</var>
+<arg>${row[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:02:42.300" level="INFO">${username} = INVALIDE</msg>
+<status status="PASS" starttime="20230608 23:02:42.299" endtime="20230608 23:02:42.300"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${password}</var>
+<arg>${row[1]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:02:42.301" level="INFO">${password} = INVALIDE</msg>
+<status status="PASS" starttime="20230608 23:02:42.300" endtime="20230608 23:02:42.301"/>
+</kw>
 <kw name="OPEN SPECIFIC WEB PAGE">
 <arg>${login_page_url}</arg>
 <arg>${browser_firefox}</arg>
@@ -11,11 +51,11 @@
 <arg>alias=${browser}[var2]</arg>
 <arg>executable_path=${browser}[var3]</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20230608 21:44:47.605" level="INFO">Opening browser 'Firefox' to base url 'https://www.demo.guru99.com/v4/'.</msg>
-<msg timestamp="20230608 21:44:47.607" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
-<status status="PASS" starttime="20230608 21:44:47.603" endtime="20230608 21:44:57.876"/>
+<msg timestamp="20230608 23:02:42.301" level="INFO">Opening browser 'Firefox' to base url 'https://www.demo.guru99.com/v4/'.</msg>
+<msg timestamp="20230608 23:02:42.303" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
+<status status="PASS" starttime="20230608 23:02:42.301" endtime="20230608 23:02:51.842"/>
 </kw>
-<status status="PASS" starttime="20230608 21:44:47.603" endtime="20230608 21:44:57.876"/>
+<status status="PASS" starttime="20230608 23:02:42.301" endtime="20230608 23:02:51.842"/>
 </kw>
 <kw name="VERIFY WEB PAGE">
 <arg>${login_page_title}</arg>
@@ -25,63 +65,290 @@
 <arg>${page_title}</arg>
 <arg>WRONG TITLE = WRONG PAGE</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20230608 21:44:57.882" level="INFO">Page title is 'Guru99 Bank Home Page'.</msg>
-<status status="PASS" starttime="20230608 21:44:57.878" endtime="20230608 21:44:57.882"/>
+<msg timestamp="20230608 23:02:51.848" level="INFO">Page title is 'Guru99 Bank Home Page'.</msg>
+<status status="PASS" starttime="20230608 23:02:51.842" endtime="20230608 23:02:51.848"/>
 </kw>
 <kw name="Location Should Be" library="SeleniumLibrary">
 <arg>${page_url}</arg>
 <arg>WRONG URL = WRONG PAGE</arg>
 <doc>Verifies that the current URL is exactly ``url``.</doc>
-<msg timestamp="20230608 21:44:57.886" level="INFO">Current location is 'https://www.demo.guru99.com/v4/'.</msg>
-<status status="PASS" starttime="20230608 21:44:57.882" endtime="20230608 21:44:57.886"/>
+<msg timestamp="20230608 23:02:51.850" level="INFO">Current location is 'https://www.demo.guru99.com/v4/'.</msg>
+<status status="PASS" starttime="20230608 23:02:51.848" endtime="20230608 23:02:51.850"/>
 </kw>
 <kw name="Element Should Be Visible" library="SeleniumLibrary">
 <arg>${verification_element}</arg>
 <arg>Element is visible</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<msg timestamp="20230608 21:44:57.915" level="INFO">Element 'name=btnReset' is displayed.</msg>
-<status status="PASS" starttime="20230608 21:44:57.886" endtime="20230608 21:44:57.915"/>
+<msg timestamp="20230608 23:02:51.872" level="INFO">Element 'name=btnReset' is displayed.</msg>
+<status status="PASS" starttime="20230608 23:02:51.850" endtime="20230608 23:02:51.872"/>
 </kw>
-<status status="PASS" starttime="20230608 21:44:57.877" endtime="20230608 21:44:57.915"/>
-</kw>
-<timeout value="20 seconds"/>
-<status status="PASS" starttime="20230608 21:44:47.601" endtime="20230608 21:44:57.916"/>
-</test>
-<test id="s1-t2" name="TEST ACCESS" line="13">
-<kw name="Run Keyword If All Tests Passed" library="BuiltIn">
-<arg>LOGIN WEB PAGE</arg>
-<arg>${user_id}</arg>
-<arg>${user_password}</arg>
-<doc>Runs the given keyword with the given arguments, if all tests passed.</doc>
-<msg timestamp="20230608 21:44:57.917" level="FAIL">Keyword 'Run Keyword If All Tests Passed' can only be used in suite teardown.</msg>
-<status status="FAIL" starttime="20230608 21:44:57.917" endtime="20230608 21:44:57.918"/>
+<status status="PASS" starttime="20230608 23:02:51.842" endtime="20230608 23:02:51.873"/>
 </kw>
 <kw name="Run Keyword And Continue On Failure" library="BuiltIn">
-<arg>VERIFY WEB PAGE</arg>
-<arg>${home_page_title}</arg>
-<arg>${home_page_url}</arg>
-<arg>${home_page_managerbtn}</arg>
+<arg>LOGIN WEB PAGE</arg>
+<arg>${username}</arg>
+<arg>${password}</arg>
 <doc>Runs the keyword and continues execution even if a failure occurs.</doc>
-<status status="NOT RUN" starttime="20230608 21:44:57.918" endtime="20230608 21:44:57.918"/>
+<kw name="LOGIN WEB PAGE">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=uid</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230608 23:02:51.873" level="INFO">Typing text 'INVALIDE' into text field 'name=uid'.</msg>
+<status status="PASS" starttime="20230608 23:02:51.873" endtime="20230608 23:02:51.908"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=password</arg>
+<arg>${userpwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230608 23:02:51.909" level="INFO">Typing text 'INVALIDE' into text field 'name=password'.</msg>
+<status status="PASS" starttime="20230608 23:02:51.908" endtime="20230608 23:02:51.930"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name=btnLogin</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230608 23:02:51.932" level="INFO">Clicking button 'name=btnLogin'.</msg>
+<status status="PASS" starttime="20230608 23:02:51.930" endtime="20230608 23:02:52.289"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230608 23:02:54.290" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230608 23:02:52.290" endtime="20230608 23:02:54.290"/>
+</kw>
+<status status="PASS" starttime="20230608 23:02:51.873" endtime="20230608 23:02:54.290"/>
+</kw>
+<status status="PASS" starttime="20230608 23:02:51.873" endtime="20230608 23:02:54.290"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="NOT RUN" starttime="20230608 21:44:57.919" endtime="20230608 21:44:57.919"/>
+<status status="PASS" starttime="20230608 23:02:54.290" endtime="20230608 23:02:56.975"/>
 </kw>
-<timeout value="20 seconds"/>
-<status status="FAIL" starttime="20230608 21:44:57.917" endtime="20230608 21:44:57.920">Keyword 'Run Keyword If All Tests Passed' can only be used in suite teardown.</status>
+<status status="PASS" starttime="20230608 23:02:42.299" endtime="20230608 23:02:56.975"/>
+</iter>
+<iter>
+<var name="${row}">('VALIDE', 'VALIDE')</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${username}</var>
+<arg>${row[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:02:56.977" level="INFO">${username} = VALIDE</msg>
+<status status="PASS" starttime="20230608 23:02:56.976" endtime="20230608 23:02:56.977"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${password}</var>
+<arg>${row[1]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:02:56.978" level="INFO">${password} = VALIDE</msg>
+<status status="PASS" starttime="20230608 23:02:56.977" endtime="20230608 23:02:56.978"/>
+</kw>
+<kw name="OPEN SPECIFIC WEB PAGE">
+<arg>${login_page_url}</arg>
+<arg>${browser_firefox}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${login_url}</arg>
+<arg>browser=${browser}[var1]</arg>
+<arg>alias=${browser}[var2]</arg>
+<arg>executable_path=${browser}[var3]</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230608 23:02:56.980" level="INFO">Opening browser 'Firefox' to base url 'https://www.demo.guru99.com/v4/'.</msg>
+<msg timestamp="20230608 23:02:56.982" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
+<status status="PASS" starttime="20230608 23:02:56.979" endtime="20230608 23:03:04.833"/>
+</kw>
+<status status="PASS" starttime="20230608 23:02:56.978" endtime="20230608 23:03:04.833"/>
+</kw>
+<kw name="VERIFY WEB PAGE">
+<arg>${login_page_title}</arg>
+<arg>${login_page_url}</arg>
+<arg>${login_page_resetbtn}</arg>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${page_title}</arg>
+<arg>WRONG TITLE = WRONG PAGE</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20230608 23:03:04.836" level="INFO">Page title is 'Guru99 Bank Home Page'.</msg>
+<status status="PASS" starttime="20230608 23:03:04.834" endtime="20230608 23:03:04.836"/>
+</kw>
+<kw name="Location Should Be" library="SeleniumLibrary">
+<arg>${page_url}</arg>
+<arg>WRONG URL = WRONG PAGE</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<msg timestamp="20230608 23:03:04.838" level="INFO">Current location is 'https://www.demo.guru99.com/v4/'.</msg>
+<status status="PASS" starttime="20230608 23:03:04.836" endtime="20230608 23:03:04.838"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${verification_element}</arg>
+<arg>Element is visible</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20230608 23:03:04.864" level="INFO">Element 'name=btnReset' is displayed.</msg>
+<status status="PASS" starttime="20230608 23:03:04.838" endtime="20230608 23:03:04.864"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:04.833" endtime="20230608 23:03:04.864"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>LOGIN WEB PAGE</arg>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="LOGIN WEB PAGE">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=uid</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230608 23:03:04.865" level="INFO">Typing text 'VALIDE' into text field 'name=uid'.</msg>
+<status status="PASS" starttime="20230608 23:03:04.865" endtime="20230608 23:03:04.901"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=password</arg>
+<arg>${userpwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230608 23:03:04.901" level="INFO">Typing text 'VALIDE' into text field 'name=password'.</msg>
+<status status="PASS" starttime="20230608 23:03:04.901" endtime="20230608 23:03:04.923"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name=btnLogin</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230608 23:03:04.923" level="INFO">Clicking button 'name=btnLogin'.</msg>
+<status status="PASS" starttime="20230608 23:03:04.923" endtime="20230608 23:03:05.338"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230608 23:03:07.338" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230608 23:03:05.338" endtime="20230608 23:03:07.338"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:04.864" endtime="20230608 23:03:07.338"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:04.864" endtime="20230608 23:03:07.338"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230608 23:03:07.338" endtime="20230608 23:03:10.006"/>
+</kw>
+<status status="PASS" starttime="20230608 23:02:56.976" endtime="20230608 23:03:10.006"/>
+</iter>
+<iter>
+<var name="${row}">('mngr507394', 'rUjyhUg')</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${username}</var>
+<arg>${row[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:03:10.008" level="INFO">${username} = mngr507394</msg>
+<status status="PASS" starttime="20230608 23:03:10.006" endtime="20230608 23:03:10.008"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${password}</var>
+<arg>${row[1]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230608 23:03:10.009" level="INFO">${password} = rUjyhUg</msg>
+<status status="PASS" starttime="20230608 23:03:10.008" endtime="20230608 23:03:10.009"/>
+</kw>
+<kw name="OPEN SPECIFIC WEB PAGE">
+<arg>${login_page_url}</arg>
+<arg>${browser_firefox}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${login_url}</arg>
+<arg>browser=${browser}[var1]</arg>
+<arg>alias=${browser}[var2]</arg>
+<arg>executable_path=${browser}[var3]</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230608 23:03:10.010" level="INFO">Opening browser 'Firefox' to base url 'https://www.demo.guru99.com/v4/'.</msg>
+<msg timestamp="20230608 23:03:10.012" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
+<status status="PASS" starttime="20230608 23:03:10.009" endtime="20230608 23:03:18.461"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:10.009" endtime="20230608 23:03:18.461"/>
+</kw>
+<kw name="VERIFY WEB PAGE">
+<arg>${login_page_title}</arg>
+<arg>${login_page_url}</arg>
+<arg>${login_page_resetbtn}</arg>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${page_title}</arg>
+<arg>WRONG TITLE = WRONG PAGE</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20230608 23:03:18.464" level="INFO">Page title is 'Guru99 Bank Home Page'.</msg>
+<status status="PASS" starttime="20230608 23:03:18.461" endtime="20230608 23:03:18.464"/>
+</kw>
+<kw name="Location Should Be" library="SeleniumLibrary">
+<arg>${page_url}</arg>
+<arg>WRONG URL = WRONG PAGE</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<msg timestamp="20230608 23:03:18.467" level="INFO">Current location is 'https://www.demo.guru99.com/v4/'.</msg>
+<status status="PASS" starttime="20230608 23:03:18.464" endtime="20230608 23:03:18.467"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${verification_element}</arg>
+<arg>Element is visible</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20230608 23:03:18.488" level="INFO">Element 'name=btnReset' is displayed.</msg>
+<status status="PASS" starttime="20230608 23:03:18.467" endtime="20230608 23:03:18.488"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:18.461" endtime="20230608 23:03:18.488"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>LOGIN WEB PAGE</arg>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="LOGIN WEB PAGE">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=uid</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230608 23:03:18.489" level="INFO">Typing text 'mngr507394' into text field 'name=uid'.</msg>
+<status status="PASS" starttime="20230608 23:03:18.489" endtime="20230608 23:03:18.526"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=password</arg>
+<arg>${userpwd}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230608 23:03:18.526" level="INFO">Typing text 'rUjyhUg' into text field 'name=password'.</msg>
+<status status="PASS" starttime="20230608 23:03:18.526" endtime="20230608 23:03:18.543"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name=btnLogin</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230608 23:03:18.544" level="INFO">Clicking button 'name=btnLogin'.</msg>
+<status status="PASS" starttime="20230608 23:03:18.543" endtime="20230608 23:03:19.421"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230608 23:03:21.423" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230608 23:03:19.421" endtime="20230608 23:03:21.423"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:18.488" endtime="20230608 23:03:21.423"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:18.488" endtime="20230608 23:03:21.423"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230608 23:03:21.423" endtime="20230608 23:03:24.088"/>
+</kw>
+<status status="PASS" starttime="20230608 23:03:10.006" endtime="20230608 23:03:24.088"/>
+</iter>
+<status status="PASS" starttime="20230608 23:02:42.299" endtime="20230608 23:03:24.088"/>
+</for>
+<tag>Smoke</tag>
+<status status="PASS" starttime="20230608 23:02:42.294" endtime="20230608 23:03:24.089"/>
 </test>
 <doc>Testing a banking software for two roles : Manager + Costumer</doc>
-<status status="FAIL" starttime="20230608 21:44:47.345" endtime="20230608 21:44:57.923"/>
+<status status="PASS" starttime="20230608 23:02:41.920" endtime="20230608 23:03:24.091"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="1" fail="0" skip="0">Smoke</stat>
 </tag>
 <suite>
-<stat pass="1" fail="1" skip="0" id="s1" name="TestSuite 1">TestSuite 1</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="TestSuite 1">TestSuite 1</stat>
 </suite>
 </statistics>
 <errors>
