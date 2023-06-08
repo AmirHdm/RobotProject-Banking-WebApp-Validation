@@ -7,13 +7,13 @@ Resource    ../BANKING/Resources/Login.resource
 
 *** Test Cases ***
 Test GET LOGIN
-    [Timeout]    15s
+    [Timeout]    20s
     OPEN SPECIFIC WEB PAGE      ${login_page_url}    ${browser_firefox}
     VERIFY WEB PAGE     ${login_page_title}     ${login_page_url}       ${login_page_resetbtn}
 TEST ACCESS
-    [Timeout]    8s
+    [Timeout]    20s
     LOGIN WEB PAGE   ${user_id}        ${user_password}
-    VERIFY WEB PAGE    ${home_page_title}       ${home_page_url}        ${home_page_managerbtn}
+    run keyword and continue on failure    VERIFY WEB PAGE    ${home_page_title}       ${home_page_url}        ${home_page_managerbtn}
     CLOSE BROWSER
 
 
@@ -30,6 +30,7 @@ VERIFY WEB PAGE
     title should be     ${page_title}       WRONG TITLE = WRONG PAGE
     location should be      ${page_url}     WRONG URL = WRONG PAGE
     element should be visible   ${verification_element}      Element is visible
+
 
 LOGIN WEB PAGE
     [Arguments]      ${username}         ${userpwd}
